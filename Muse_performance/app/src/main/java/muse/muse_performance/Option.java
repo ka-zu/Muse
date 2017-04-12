@@ -1,6 +1,7 @@
 package muse.muse_performance;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.app.Activity;
 import android.widget.AdapterView;
@@ -79,19 +80,21 @@ public class Option extends Activity
 	// 本体
 	private Instrument[] InstList = {
 		new Instrument( "ピアノ", 0 ),
+		new Instrument("パープシコード",7),
 		new Instrument( "オルゴール", 11 ),
 		new Instrument( "マリンバ", 13 ),
 		new Instrument( "ドローパーオルガン", 17 ),
 		new Instrument( "アコーディオン", 22 ),
-		new Instrument( "ハーモニカ", 23 ),
 		new Instrument( "ナイロン弦アコギ", 25 ),
 		new Instrument( "スラップベース", 37 ),
 		new Instrument( "シンセベース2", 40 ),
 		new Instrument( "ヴァイオリン", 41 ),
+		new Instrument("ティンパニ",48),
 		new Instrument( "トランペット", 57 ),
 		new Instrument( "ソプラノサックス", 65 ),
+		new Instrument("フルート",74),
+		new Instrument("クリスタル",99),
 		new Instrument( "三味線", 107 ),
-		new Instrument( "太鼓", 117 )
 	};
 	public String[] nameList = new String[ InstList.length ];
 	public int[] instList = new int[ InstList.length ];
@@ -164,10 +167,12 @@ public class Option extends Activity
 		melodyInst[3] = intent.getIntExtra("MInst3", 0);
 		beat = intent.getIntExtra("BEAT", 0);
 
+		Log.d("","opt "+melodyInst[1]);
+
 		//曲のドロップダウンメニュー
 		selectSong=(Spinner)findViewById(R.id.songSpinner);
 		ArrayAdapter<String> adapterSong = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,songItems);
-		adapterSong.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		adapterSong.setDropDownViewResource( android.R.layout.simple_spinner_dropdown_item );
 		selectSong.setAdapter(adapterSong);
 		selectSong.setSelection(songNo);
 		selectSong.setOnItemSelectedListener(new OnItemSelectedListener(){
@@ -352,9 +357,9 @@ public class Option extends Activity
 			public void onClick(View v) {
 			Intent intent=new Intent();
 			intent.putExtra("RES_SongNo", songNo);
-			intent.putExtra("RES_A1Inst0", arrange2Inst[0]);
-			intent.putExtra("RES_A1Inst1", arrange2Inst[1]);
-			intent.putExtra("RES_A1Inst2", arrange2Inst[2]);
+			intent.putExtra("RES_A1Inst0", arrange1Inst[0]);
+			intent.putExtra("RES_A1Inst1", arrange1Inst[1]);
+			intent.putExtra("RES_A1Inst2", arrange1Inst[2]);
 			intent.putExtra("RES_A2Inst0", arrange2Inst[0]);
 			intent.putExtra("RES_A2Inst1", arrange2Inst[1]);
 			intent.putExtra("RES_A2Inst2", arrange2Inst[2]);
@@ -364,6 +369,7 @@ public class Option extends Activity
 			intent.putExtra("RES_MInst3", melodyInst[3]);
 			intent.putExtra("RES_BEAT", beat);
 			setResult(RESULT_OK,intent);
+			Log.d("","opt "+melodyInst[1]);
 			finish();
 			}
 		});

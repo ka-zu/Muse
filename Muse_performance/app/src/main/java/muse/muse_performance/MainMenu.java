@@ -3,6 +3,7 @@ package muse.muse_performance;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -14,7 +15,7 @@ public class MainMenu extends Activity
 
 	int Arrange1InstList[] = { 0, 22, 40 };
 	int Arrange2InstList[] = { 0, 22, 40 };
-	int melodyInstList[] = { 0, 53, 23, 25 };
+	int melodyInstList[] = { 0, 57, 22, 25 };
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -47,6 +48,8 @@ public class MainMenu extends Activity
 			}
 		});
 
+		Log.d("","main "+melodyInstList[1]);
+
 		// Optionへ遷移するボタン
 		Button sendButton2 = (Button)findViewById(R.id.send_button2);
 		sendButton2.setOnClickListener(new View.OnClickListener()
@@ -68,6 +71,7 @@ public class MainMenu extends Activity
 				intent2.putExtra("MInst3", melodyInstList[3]);
 				intent2.putExtra("BEAT", beat);
 				int requestCode = RESULT;
+				Log.d("","main "+melodyInstList[1]);
 				startActivityForResult(intent2,requestCode);
 			}
 		});
